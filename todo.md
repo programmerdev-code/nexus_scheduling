@@ -65,3 +65,5 @@
 ## Bugs Encontrados
 - [x] Serviços não aparecem na página de agendamento (CORRIGIDO - Adicionados 7 procedimentos ao BD)
 - [x] Necessário popular banco de dados com serviços padrão (CORRIGIDO)
+
+- [x] Remover preços e duração na exibição de serviços na página de agendamento

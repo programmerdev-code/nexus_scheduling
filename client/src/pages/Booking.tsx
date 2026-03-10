@@ -180,11 +180,6 @@ export default function Booking() {
                       }`}
                     >
                       <h3 className="font-semibold text-foreground">{service.name}</h3>
-                      <p className="text-sm text-muted-foreground">{service.description}</p>
-                      <p className="text-sm text-primary font-semibold mt-2">
-                        {service.duration} min
-                        {service.price && ` • R$ ${(service.price / 100).toFixed(2)}`}
-                      </p>
                     </button>
                   ))}
                 </div>
