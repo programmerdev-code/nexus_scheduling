@@ -43,33 +43,49 @@
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
+  /* Agendify Design System - Minimalismo Corporativo Futurista */
+  /* Cores Primárias */
+  --primary: #0066FF; /* Azul profundo - confiança, tecnologia */
+  --primary-foreground: #FFFFFF;
+  --secondary: #7C3AED; /* Roxo vibrante - inovação */
+  --secondary-foreground: #FFFFFF;
+  --accent: #10B981; /* Verde - ações positivas */
+  --accent-foreground: #FFFFFF;
+  --destructive: #EF4444; /* Vermelho - ações destrutivas */
+  --destructive-foreground: #FFFFFF;
+  
+  /* Cores Neutras */
+  --background: #FFFFFF; /* Branco puro */
+  --foreground: #1F2937; /* Cinza escuro para texto */
+  --card: #FFFFFF;
+  --card-foreground: #1F2937;
+  --popover: #FFFFFF;
+  --popover-foreground: #1F2937;
+  --muted: #F3F4F6; /* Cinza muito claro */
+  --muted-foreground: #6B7280; /* Cinza médio */
+  --border: #E5E7EB; /* Cinza claro para bordas */
+  --input: #F9FAFB; /* Cinza muito claro para inputs */
+  --ring: #0066FF; /* Azul para focus rings */
+  
+  /* Sidebar */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #1F2937;
+  --sidebar-primary: #0066FF;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F3F4F6;
+  --sidebar-accent-foreground: #0066FF;
+  --sidebar-border: #E5E7EB;
+  --sidebar-ring: #0066FF;
+  
+  /* Charts */
+  --chart-1: #0066FF;
+  --chart-2: #7C3AED;
+  --chart-3: #10B981;
+  --chart-4: #F59E0B;
+  --chart-5: #EF4444;
+  
+  /* Design Tokens */
+  --radius: 0.65rem; /* Arredondamento sutil */
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.235 0.015 65);
   --sidebar-accent: oklch(0.967 0.001 286.375);
@@ -174,4 +190,34 @@
       max-width: 1280px; /* Standard content width */
     }
   }
+}
+/* Agendify Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
 }
