@@ -1,17 +1,12 @@
+import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CheckCircle2, Calendar, Users, Zap, Bell, BarChart3, ChevronRight, Star } from "lucide-react";
-import { useState } from "react";
-
-/**
- * Agendify Landing Page
- * Design: Minimalismo Corporativo Futurista
- * Cores: Azul (#0066FF) + Roxo (#7C3AED) + Branco + Cinza
- * Tipografia: Poppins (títulos) + Inter (corpo)
- */
+import { CheckCircle2, Calendar, Users, Zap, Bell, BarChart3, ChevronRight, Star, Instagram } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<string>("");
+  const { user, loading, logout } = useAuth();
+  const [, setLocation] = useLocation();
 
   const features = [
     {
@@ -152,7 +147,27 @@ export default function Home() {
               FAQ
             </a>
           </nav>
-          <Button className="bg-primary text-white hover:bg-blue-700">Entrar</Button>
+          <div className="flex items-center gap-3">
+            {user ? (
+              <>
+                <span className="text-sm text-muted-foreground">{user.name}</span>
+                <Button
+                  onClick={() => {
+                    logout();
+                    setLocation("/");
+                  }}
+                  variant="outline"
+                  size="sm"
+                >
+                  Sair
+                </Button>
+              </>
+            ) : (
+              <Button className="bg-primary text-white hover:bg-blue-700" size="sm">
+                Entrar
+              </Button>
+            )}
+          </div>
         </div>
       </header>
 
@@ -162,106 +177,31 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="fade-in-up">
               <h1 className="text-5xl md:text-6xl font-bold text-foreground leading-tight mb-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                Sistema inteligente de agendamento online para seu negócio
+                A maneira simples e inteligente de organizar seus atendimentos
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                 Organize seus horários, gerencie clientes e automatize seus atendimentos com uma plataforma simples, moderna e acessível de qualquer lugar.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-primary text-white hover:bg-blue-700 px-6 py-3 text-base h-auto inline-flex items-center gap-2">
-                  Criar conta grátis <ChevronRight className="w-5 h-5" />
+                <Button
+                  onClick={() => setLocation("/booking")}
+                  className="bg-primary text-white hover:bg-blue-700 px-6 py-3 text-base h-auto inline-flex items-center gap-2"
+                >
+                  Agendar Horário <ChevronRight className="w-5 h-5" />
                 </Button>
-                <Button className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 text-base h-auto inline-flex items-center gap-2">
-                  Ver demonstração
+                <Button
+                  onClick={() => window.open("https://instagram.com/conceitomaribrandao", "_blank")}
+                  className="bg-gradient-to-r from-pink-500 to-purple-500 text-white hover:from-pink-600 hover:to-purple-600 px-6 py-3 text-base h-auto inline-flex items-center gap-2"
+                >
+                  <Instagram className="w-5 h-5" />
+                  Falar no Instagram
                 </Button>
               </div>
             </div>
             <div className="slide-in-left">
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663408705506/VWD2zSXDm3XSxDiJdXbqat/agendify-hero-dashboard-QW6dGgF2bxkc2Tczoh37Ts.webp"
-                alt="Dashboard Agendify"
-                className="w-full rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Problems Section */}
-      <section className="py-20 md:py-32 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              Os desafios do agendamento manual
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              Muitos negócios ainda enfrentam problemas ao gerenciar atendimentos manualmente
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663408705506/VWD2zSXDm3XSxDiJdXbqat/agendify-problems-visual-UzVQcqxyNzRpTf8jxcoEeT.webp"
-                alt="Problemas do agendamento manual"
-                className="w-full rounded-lg"
-              />
-            </div>
-            <div className="space-y-4">
-              {[
-                "Perda de horários na agenda",
-                "Clientes esquecendo consultas",
-                "Desorganização de atendimentos",
-                "Dificuldade para controlar pagamentos",
-                "Excesso de mensagens para marcar horários",
-              ].map((problem, idx) => (
-                <div key={idx} className="flex items-start gap-4">
-                  <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-red-600 font-bold">✕</span>
-                  </div>
-                  <p className="text-lg text-foreground">{problem}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Solution Section */}
-      <section className="py-20 md:py-32 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              A solução: Agendify
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              Com a plataforma Agendify, organize toda a rotina de atendimentos em um único lugar
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-4 order-2 md:order-1">
-              {[
-                "Criar agenda digital",
-                "Cadastrar clientes",
-                "Permitir agendamento online",
-                "Enviar lembretes automáticos",
-                "Acompanhar relatórios",
-              ].map((solution, idx) => (
-                <div key={idx} className="flex items-start gap-4">
-                  <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-1">
-                    <CheckCircle2 className="w-5 h-5 text-green-600" />
-                  </div>
-                  <p className="text-lg text-foreground">{solution}</p>
-                </div>
-              ))}
-            </div>
-            <div className="order-1 md:order-2">
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663408705506/VWD2zSXDm3XSxDiJdXbqat/agendify-solution-visual-HJFVGq2v8wfHqypXdSiYeP.webp"
-                alt="Solução Agendify"
-                className="w-full rounded-lg"
-              />
+              <div className="w-full rounded-lg shadow-lg bg-gradient-to-br from-blue-100 to-purple-100 p-8 h-96 flex items-center justify-center">
+                <Calendar className="w-32 h-32 text-primary opacity-30" />
+              </div>
             </div>
           </div>
         </div>
@@ -337,10 +277,10 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
-              { step: "1", title: "Criar conta", desc: "Cadastre sua empresa na plataforma." },
-              { step: "2", title: "Configurar agenda", desc: "Defina horários, serviços e profissionais." },
-              { step: "3", title: "Compartilhar link", desc: "Envie seu link de agendamento para clientes." },
-              { step: "4", title: "Gerenciar tudo online", desc: "Acompanhe compromissos e atendimentos." },
+              { step: "1", title: "Abrir a agenda", desc: "Acesse o site do Agendify." },
+              { step: "2", title: "Escolher horário", desc: "Selecione o serviço e horário disponível." },
+              { step: "3", title: "Preencher dados", desc: "Informe seu nome e telefone." },
+              { step: "4", title: "Confirmar", desc: "Finalize o agendamento." },
             ].map((item, idx) => (
               <div key={idx} className="text-center">
                 <div className="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
@@ -356,37 +296,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 md:py-32 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              Benefícios do Agendify
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              "Organização completa da agenda",
-              "Menos faltas de clientes",
-              "Economia de tempo",
-              "Acesso em qualquer dispositivo",
-              "Atendimento mais profissional",
-              "Aumento da produtividade",
-            ].map((benefit, idx) => (
-              <div key={idx} className="flex items-center gap-4 p-4">
-                <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                  <CheckCircle2 className="w-5 h-5 text-green-600" />
-                </div>
-                <p className="text-lg text-foreground">{benefit}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
-      <section className="py-20 md:py-32 bg-muted">
+      <section className="py-20 md:py-32 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
@@ -414,7 +325,7 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 md:py-32 bg-white">
+      <section id="pricing" className="py-20 md:py-32 bg-muted">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
@@ -470,7 +381,7 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-20 md:py-32 bg-muted">
+      <section id="faq" className="py-20 md:py-32 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
@@ -480,18 +391,15 @@ export default function Home() {
 
           <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, idx) => (
-              <div key={idx} className="bg-white rounded-lg border border-border p-6">
-                <button
-                  onClick={() => setActiveTab(activeTab === `faq-${idx}` ? "" : `faq-${idx}`)}
-                  className="w-full text-left flex items-center justify-between hover:text-primary transition"
-                >
-                  <h3 className="text-lg font-semibold text-foreground">{faq.question}</h3>
-                  <span className="text-2xl text-primary">{activeTab === `faq-${idx}` ? "−" : "+"}</span>
-                </button>
-                {activeTab === `faq-${idx}` && (
+              <Card key={idx} className="bg-card rounded-lg border border-border p-6">
+                <details className="cursor-pointer">
+                  <summary className="flex items-center justify-between font-semibold text-foreground hover:text-primary transition">
+                    {faq.question}
+                    <span className="text-2xl">+</span>
+                  </summary>
                   <p className="text-muted-foreground mt-4">{faq.answer}</p>
-                )}
-              </div>
+                </details>
+              </Card>
             ))}
           </div>
         </div>
@@ -503,8 +411,11 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
             Organize seus atendimentos e leve seu negócio para o próximo nível
           </h2>
-          <Button className="bg-white text-primary hover:bg-gray-100 px-8 py-4 text-lg h-auto inline-flex items-center gap-2">
-            Criar conta gratuita <ChevronRight className="w-5 h-5" />
+          <Button
+            onClick={() => setLocation("/booking")}
+            className="bg-white text-primary hover:bg-gray-100 px-8 py-4 text-lg h-auto inline-flex items-center gap-2"
+          >
+            Agendar Agora <ChevronRight className="w-5 h-5" />
           </Button>
         </div>
       </section>
@@ -525,24 +436,24 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Produto</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition">Funcionalidades</a></li>
-                <li><a href="#" className="hover:text-white transition">Preços</a></li>
-                <li><a href="#" className="hover:text-white transition">Segurança</a></li>
+                <li><a href="#features" className="hover:text-white transition">Funcionalidades</a></li>
+                <li><a href="#pricing" className="hover:text-white transition">Preços</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Empresa</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition">Sobre</a></li>
-                <li><a href="#" className="hover:text-white transition">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition">Contato</a></li>
+                <li><a onClick={() => setLocation("/contact")} className="hover:text-white transition cursor-pointer">Contato</a></li>
+                <li><a href="https://instagram.com/conceitomaribrandao" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">Instagram</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
+              <h4 className="font-semibold mb-4">Social</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition">Privacidade</a></li>
-                <li><a href="#" className="hover:text-white transition">Termos</a></li>
+                <li><a href="https://instagram.com/conceitomaribrandao" target="_blank" rel="noopener noreferrer" className="hover:text-white transition flex items-center gap-2">
+                  <Instagram className="w-4 h-4" />
+                  @conceitomaribrandao
+                </a></li>
               </ul>
             </div>
           </div>
@@ -551,6 +462,17 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Floating Instagram Button */}
+      <a
+        href="https://instagram.com/conceitomaribrandao"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow z-40"
+        title="Falar pelo Instagram"
+      >
+        <Instagram className="w-7 h-7" />
+      </a>
     </div>
   );
 }
