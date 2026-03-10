@@ -60,3 +60,8 @@
 - [ ] Notificações por email
 - [ ] Exportar agenda em PDF
 - [ ] Integração com WhatsApp
+
+
+## Bugs Encontrados
+- [x] Serviços não aparecem na página de agendamento (CORRIGIDO - Adicionados 7 procedimentos ao BD)
+- [x] Necessário popular banco de dados com serviços padrão (CORRIGIDO)

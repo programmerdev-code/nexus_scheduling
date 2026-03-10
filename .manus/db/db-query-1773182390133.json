@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO services (name, description, duration, price, createdAt) VALUES\n('Proprietária Capilar', 'Tratamento capilar profissional com produtos de alta qualidade', 60, 15000, NOW()),\n('Acne Control', 'Tratamento especializado para controle e prevenção de acne', 45, 12000, NOW()),\n('Botox', 'Aplicação de botox para redução de rugas e expressão', 30, 25000, NOW()),\n('Limpeza de Pele', 'Limpeza profunda e higienização da pele com produtos premium', 50, 10000, NOW()),\n('Capilar Regenere', 'Regeneração capilar com tecnologia de ponta', 75, 18000, NOW()),\n('Liporedux', 'Procedimento para redução de medidas e tonificação', 60, 20000, NOW()),\n('Dermaplane', 'Esfoliação profissional com dermaplane para renovação da pele', 40, 14000, NOW());",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3HXhi2patsn5Nso.c67b5ae8b6d6 --database VWD2zSXDm3XSxDiJdXbqat --execute INSERT INTO services (name, description, duration, price, createdAt) VALUES\n('Proprietária Capilar', 'Tratamento capilar profissional com produtos de alta qualidade', 60, 15000, NOW()),\n('Acne Control', 'Tratamento especializado para controle e prevenção de acne', 45, 12000, NOW()),\n('Botox', 'Aplicação de botox para redução de rugas e expressão', 30, 25000, NOW()),\n('Limpeza de Pele', 'Limpeza profunda e higienização da pele com produtos premium', 50, 10000, NOW()),\n('Capilar Regenere', 'Regeneração capilar com tecnologia de ponta', 75, 18000, NOW()),\n('Liporedux', 'Procedimento para redução de medidas e tonificação', 60, 20000, NOW()),\n('Dermaplane', 'Esfoliação profissional com dermaplane para renovação da pele', 40, 14000, NOW());",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 387
+}
