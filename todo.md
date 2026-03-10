@@ -67,3 +67,7 @@
 - [x] Necessário popular banco de dados com serviços padrão (CORRIGIDO)
 
 - [x] Remover preços e duração na exibição de serviços na página de agendamento
+
+- [x] Remover tela de autenticação obrigatória (login)
+- [x] Permitir agendamentos sem login
+- [x] Garantir que agendamentos sejam salvos no banco de dados ao confirmar
