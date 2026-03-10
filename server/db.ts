@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, services, appointments, contactMessages, InsertService, InsertAppointment, InsertContactMessage } from "../drizzle/schema";
+import { InsertUser, users, services, appointments, contactMessages, InsertService, InsertAppointment, InsertContactMessage, owner, blockedTimes, InsertOwner, InsertBlockedTime } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -141,4 +141,37 @@ export async function getContactMessages() {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   return db.select().from(contactMessages);
+}
+
+// Owner queries
+export async function getOwnerByUsername(username: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const result = await db.select().from(owner).where(eq(owner.username, username)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function createOwner(ownerData: InsertOwner) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  return db.insert(owner).values(ownerData);
+}
+
+// Blocked times queries
+export async function blockTime(blockedTime: InsertBlockedTime) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  return db.insert(blockedTimes).values(blockedTime);
+}
+
+export async function getBlockedTimes() {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  return db.select().from(blockedTimes);
+}
+
+export async function deleteBlockedTime(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  return db.delete(blockedTimes).where(eq(blockedTimes.id, id));
 }

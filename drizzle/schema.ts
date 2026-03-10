@@ -65,3 +65,24 @@ export const contactMessages = mysqlTable("contactMessages", {
 
 export type ContactMessage = typeof contactMessages.$inferSelect;
 export type InsertContactMessage = typeof contactMessages.$inferInsert;
+
+export const owner = mysqlTable("owner", {
+  id: int("id").autoincrement().primaryKey(),
+  username: varchar("username", { length: 255 }).notNull().unique(),
+  password: varchar("password", { length: 255 }).notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Owner = typeof owner.$inferSelect;
+export type InsertOwner = typeof owner.$inferInsert;
+
+export const blockedTimes = mysqlTable("blockedTimes", {
+  id: int("id").autoincrement().primaryKey(),
+  date: timestamp("date").notNull(),
+  reason: varchar("reason", { length: 255 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BlockedTime = typeof blockedTimes.$inferSelect;
+export type InsertBlockedTime = typeof blockedTimes.$inferInsert;

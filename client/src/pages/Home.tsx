@@ -196,6 +196,13 @@ export default function Home() {
                   <Instagram className="w-5 h-5" />
                   Falar no Instagram
                 </Button>
+                <Button
+                  onClick={() => setLocation("/admin/login")}
+                  variant="outline"
+                  className="px-6 py-3 text-base h-auto"
+                >
+                  Login da Proprietária
+                </Button>
               </div>
             </div>
             <div className="slide-in-left">

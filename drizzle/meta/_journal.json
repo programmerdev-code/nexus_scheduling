@@ -15,6 +15,13 @@
       "when": 1773180669630,
       "tag": "0001_nosy_silhouette",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1773181767857,
+      "tag": "0002_mighty_butterfly",
+      "breakpoints": true
     }
   ]
 }
