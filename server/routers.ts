@@ -41,7 +41,7 @@ export const appRouter = router({
           status: "pending",
         });
       }),
-    update: protectedProcedure
+    update: publicProcedure
       .input(z.object({
         id: z.number(),
         status: z.enum(["pending", "confirmed", "completed", "cancelled"]),
@@ -49,7 +49,7 @@ export const appRouter = router({
       .mutation(async ({ input }) => {
         return updateAppointmentStatus(input.id, input.status);
       }),
-    delete: protectedProcedure
+    delete: publicProcedure
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         return deleteAppointment(input.id);

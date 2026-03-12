@@ -71,3 +71,5 @@
 - [x] Remover tela de autenticação obrigatória (login)
 - [x] Permitir agendamentos sem login
 - [x] Garantir que agendamentos sejam salvos no banco de dados ao confirmar
+
+- [x] Erro ao confirmar/cancelar agendamento no painel da proprietária (CORRIGIDO - Procedures mudadas para públicas)
