@@ -73,3 +73,10 @@
 - [x] Garantir que agendamentos sejam salvos no banco de dados ao confirmar
 
 - [x] Erro ao confirmar/cancelar agendamento no painel da proprietária (CORRIGIDO - Procedures mudadas para públicas)
+
+
+## Nova Funcionalidade - Consulta de Agendamentos por Telefone
+- [x] Criar página de consulta de agendamentos por telefone
+- [x] Implementar backend para buscar agendamentos por telefone
+- [x] Adicionar rota no App.tsx
+- [x] Testar a funcionalidade

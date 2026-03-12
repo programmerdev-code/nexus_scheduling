@@ -3,7 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import { z } from "zod";
-import { createAppointment, getAppointments, createService, getServices, createContactMessage, getContactMessages, deleteAppointment, updateAppointmentStatus } from "./db";
+import { createAppointment, getAppointments, createService, getServices, createContactMessage, getContactMessages, deleteAppointment, updateAppointmentStatus, getAppointmentsByPhone } from "./db";
 
 export const appRouter = router({
   system: systemRouter,
@@ -53,6 +53,11 @@ export const appRouter = router({
       .input(z.object({ id: z.number() }))
       .mutation(async ({ input }) => {
         return deleteAppointment(input.id);
+      }),
+    getByPhone: publicProcedure
+      .input(z.object({ phone: z.string() }))
+      .query(async ({ input }) => {
+        return getAppointmentsByPhone(input.phone);
       }),
   }),
 

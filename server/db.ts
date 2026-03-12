@@ -175,3 +175,12 @@ export async function deleteBlockedTime(id: number) {
   if (!db) throw new Error("Database not available");
   return db.delete(blockedTimes).where(eq(blockedTimes.id, id));
 }
+
+
+export async function getAppointmentsByPhone(phone: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  const { eq } = await import("drizzle-orm");
+  return db.select().from(appointments).where(eq(appointments.clientPhone, phone));
+}

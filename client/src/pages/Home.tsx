@@ -197,6 +197,13 @@ export default function Home() {
                   Falar no Instagram
                 </Button>
                 <Button
+                  onClick={() => setLocation("/search")}
+                  variant="outline"
+                  className="px-6 py-3 text-base h-auto"
+                >
+                  Meus Agendamentos
+                </Button>
+                <Button
                   onClick={() => setLocation("/admin/login")}
                   variant="outline"
                   className="px-6 py-3 text-base h-auto"
